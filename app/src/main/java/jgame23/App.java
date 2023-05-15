@@ -3,7 +3,6 @@
  */
 package jgame23;
 
-
 import com.entropyinteractive.*;  //jgame
  
 import java.awt.*;
@@ -20,12 +19,7 @@ import java.util.LinkedList;
 import java.util.*;
 import java.text.*;
 
- 
-
-
 public class App extends JGame {
- 
-
 	Date dInit = new Date();
 	Date dAhora;
 	SimpleDateFormat ft = new SimpleDateFormat ("mm:ss");
@@ -132,13 +126,6 @@ public void gameUpdate(double delta) {
 
         
         ovni.draw(g);
-
-
-
-
-        
-
-
 
     }
 
