@@ -12,13 +12,11 @@ import javax.imageio.*; //imagenes
 
 import java.awt.Graphics2D;
 
-import java.awt.geom.*; //Point2d
 import java.util.LinkedList;
 
 import java.util.*;
-import java.text.*;
 
-public class App extends JGame {
+public class BattleOfMidway extends JGame {
 	Date dInit = new Date();
 	Date dAhora;
 	//SimpleDateFormat ft = new SimpleDateFormat ("mm:ss");
@@ -26,13 +24,7 @@ public class App extends JGame {
     BufferedImage img_fondo = null;
     Personaje ovni=new Personaje();
 
-    public static void main(String[] args) {
-        App game = new App();
-        game.run(1.0 / 60.0);
-        System.exit(0);
-    }
-
-    public App() {
+    public BattleOfMidway() {
         super("App", 800, 600);
         System.out.println(appProperties.stringPropertyNames());
     }
@@ -40,9 +32,11 @@ public class App extends JGame {
     public void gameStartup() {
 		System.out.println("gameStartup");
         try{
-            //img_fondo= ImageIO.read(getClass().getResource("imagenes/fondo.jpg"));
-			//ovni.setImagen(ImageIO.read(getClass().getResource("imagenes/ufo.png")));
-			img_fondo= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo.jpg")));
+            /*
+			img_fondo= ImageIO.read(getClass().getResource("imagenes/fondo.jpg"));
+			ovni.setImagen(ImageIO.read(getClass().getResource("imagenes/ufo.png")));
+			*/
+            img_fondo= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo.jpg")));
             ovni.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/ufo.png"))));
             ovni.setPosicion((double) getWidth() / 2, (double) getHeight() / 2 );
         }
