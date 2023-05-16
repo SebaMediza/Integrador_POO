@@ -55,7 +55,6 @@ public class App extends JGame {
         try{
 			
 			
-			
             //img_fondo= ImageIO.read(getClass().getResource("imagenes/fondo.jpg"));
 			//ovni.setImagen(ImageIO.read(getClass().getResource("imagenes/ufo.png")));
 			
@@ -132,12 +131,6 @@ public void gameUpdate(double delta) {
 
         
         ovni.draw(g);
-
-
-
-
-        
-
 
 
     }
