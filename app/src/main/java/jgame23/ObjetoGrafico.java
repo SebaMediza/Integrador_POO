@@ -1,6 +1,7 @@
 package jgame23;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.security.PublicKey;
 import java.util.Objects;
 
-public class ObjetoGrafico {
+public abstract class ObjetoGrafico{
 
     protected BufferedImage image;
     protected Point2D.Double position = new Point2D.Double();
@@ -40,5 +41,4 @@ public class ObjetoGrafico {
             e.printStackTrace();
         }
     }
-
 }
