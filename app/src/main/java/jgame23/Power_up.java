@@ -1,4 +1,5 @@
 package jgame23;
+
 public abstract class Power_up {
     protected int duracion = 20;
     protected boolean activo;

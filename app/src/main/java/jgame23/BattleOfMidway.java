@@ -16,17 +16,15 @@ public class BattleOfMidway extends JGame{
 
 
     public BattleOfMidway() {
-        super("App", 800, 600);
+        super("Battle Of Midway", 550, 1300);
         System.out.println(appProperties.stringPropertyNames());
-        run(1.0 / 60.0);
-        System.exit(0);
     }
 
     public void gameStartup() {
         System.out.println("gameStartup");
         try{
             img_fondo= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo.jpg")));
-            ovni.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/ufo.png"))));
+            ovni.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38.png"))));
             ovni.setPosicion((double) getWidth() / 2,(double)getHeight() / 2 );
         }
         catch(Exception e){
