@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 
-public class SistemaJuego extends JFrame implements ActionListener{
+public class SistemaJuego extends JFrame implements ActionListener, Runnable{
     JFrame mainFrame;
     JPanel leftPanel, midPanel;
     JLabel l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15;
@@ -146,18 +146,19 @@ public class SistemaJuego extends JFrame implements ActionListener{
         midPanel.add(l14, constraints1);
         constraints1.gridx = 8;
         midPanel.add(l15, constraints1);
-        System.out.println(System.getProperty("user.dir"));
+        //System.out.println(System.getProperty("user.dir"));
 
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if(actionEvent.getActionCommand().equals(b0.getActionCommand())){
-            BattleOfMidway game = new BattleOfMidway();
-            game.run(1.0 / 60.0);
-            System.exit(0);
+            new BattleOfMidway();
         }
     }
     public static void main(String[] args) {
         new SistemaJuego();
     }
+
+    @Override
+    public void run() {}
 }

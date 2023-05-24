@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.security.PublicKey;
 import java.util.Objects;
 
-public abstract class ObjetoGrafico{
+public abstract class ObjetoGrafico implements Movible{
 
     protected BufferedImage image;
     protected Point2D.Double position = new Point2D.Double();

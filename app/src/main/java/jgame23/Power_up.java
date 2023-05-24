@@ -1,3 +1,4 @@
+package jgame23;
 public abstract class Power_up {
     protected int duracion = 20;
     protected boolean activo;
@@ -13,19 +14,19 @@ public abstract class Power_up {
         activo = false;
     }
 
-    public getDuracion(){
+    public int getDuracion(){
         return duracion;
     }
 
-    public setDuracion(int duracion){
+    public void setDuracion(int duracion){
         this.duracion = duracion;
     }
 
-    public isActivo(){
+    public boolean isActivo(){
         return activo;
     }
 
-    public setActivo(boolean activo){
+    public void setActivo(boolean activo){
         this.activo = activo;
     }
 
