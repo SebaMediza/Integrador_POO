@@ -22,10 +22,10 @@ public class BattleOfMidway extends JGame {
 	//SimpleDateFormat ft = new SimpleDateFormat ("mm:ss");
 	final double NAVE_DESPLAZAMIENTO=150.0;
     BufferedImage img_fondo = null;
-    Personaje ovni=new Personaje();
+    Personaje avion_p38=new Personaje();
 
     public BattleOfMidway() {
-        super("App", 800, 600);
+        super("Battle Of Midway", 550, 1300);
         System.out.println(appProperties.stringPropertyNames());
     }
 
@@ -36,9 +36,9 @@ public class BattleOfMidway extends JGame {
 			img_fondo= ImageIO.read(getClass().getResource("imagenes/fondo.jpg"));
 			ovni.setImagen(ImageIO.read(getClass().getResource("imagenes/ufo.png")));
 			*/
-            img_fondo= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo.jpg")));
-            ovni.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/ufo.png"))));
-            ovni.setPosicion((double) getWidth() / 2, (double) getHeight() / 2 );
+            img_fondo= ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo2.png")));
+            avion_p38.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38.png"))));
+            avion_p38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2 );
         }
         catch(Exception e){
 			System.out.println(e);
@@ -49,20 +49,20 @@ public void gameUpdate(double delta) {
         Keyboard keyboard = this.getKeyboard();
         // Procesar teclas de direccion
         if (keyboard.isKeyPressed(KeyEvent.VK_UP)){
-            ovni.setY( ovni.getY() - NAVE_DESPLAZAMIENTO * delta);
+            avion_p38.setY( avion_p38.getY() - NAVE_DESPLAZAMIENTO * delta);
             //shipY -= NAVE_DESPLAZAMIENTO * delta;
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_DOWN)){
             //shipY += NAVE_DESPLAZAMIENTO * delta;
-            ovni.setY( ovni.getY() + NAVE_DESPLAZAMIENTO * delta);
+            avion_p38.setY( avion_p38.getY() + NAVE_DESPLAZAMIENTO * delta);
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_LEFT)){
             //shipX -= NAVE_DESPLAZAMIENTO * delta;
-            ovni.setX( ovni.getX() - NAVE_DESPLAZAMIENTO * delta);
+            avion_p38.setX( avion_p38.getX() - NAVE_DESPLAZAMIENTO * delta);
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_RIGHT)){
             //shipX += NAVE_DESPLAZAMIENTO * delta;
-            ovni.setX( ovni.getX() + NAVE_DESPLAZAMIENTO * delta);
+            avion_p38.setX( avion_p38.getX() + NAVE_DESPLAZAMIENTO * delta);
         }
         // Esc fin del juego
         LinkedList < KeyEvent > keyEvents = keyboard.getEvents();
@@ -72,7 +72,7 @@ public void gameUpdate(double delta) {
                 stop();
             }
         }
-        ovni.update(delta);
+        avion_p38.update(delta);
     }
 
     public void gameDraw(Graphics2D g) {
@@ -80,19 +80,20 @@ public void gameUpdate(double delta) {
     	long dateDiff = dAhora.getTime() - dInit.getTime();
     	long diffSeconds = dateDiff / 1000 % 60;
 		long diffMinutes = dateDiff / (60 * 1000) % 60;
-        g.drawImage(img_fondo,0,0,null);// imagen de fondo
+        g.drawImage(img_fondo,8,0,null);// imagen de fondo
         g.setColor(Color.black);
         g.drawString("Tiempo de Juego: "+diffMinutes+":"+diffSeconds,12,42);
         g.drawString("Tecla ESC = Fin del Juego ",592,42);
     	g.setColor(Color.white);
     	g.drawString("Tiempo de Juego: "+diffMinutes+":"+diffSeconds,10,40);
 		g.drawString("Tecla ESC = Fin del Juego ",590,40);
-        ovni.draw(g);
+        avion_p38.draw(g);
     }
 
     public void gameShutdown() {
        Log.info(getClass().getSimpleName(), "Shutting down game");
     }
+
 }
 
 

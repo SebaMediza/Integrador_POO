@@ -1,8 +1,10 @@
 package jgame23;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class SistemaJuego extends JFrame implements ActionListener{
     JFrame mainFrame;
@@ -12,12 +14,12 @@ public class SistemaJuego extends JFrame implements ActionListener{
     JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15;
     ImageIcon home, user, community;
     JButton homeButton, communityButton, userButton;
-
+    Thread t;
 
     public SistemaJuego() {
         this.GUI();
     }
-    private void GUI() {
+    private void GUI(){
         /*CONFIGURACION DEL FRAME PRINCIPAL*/
         mainFrame = new JFrame();
         mainFrame.setLayout(new BorderLayout());
@@ -70,7 +72,7 @@ public class SistemaJuego extends JFrame implements ActionListener{
         constraints1.gridy = 1;
         midPanel.add(b0, constraints1);
         /*BOTONES Y JUEGOS DE RELLENO*/
-        i1 = new ImageIcon("app/src/main/resources/imagenes/Grounded.jpg");
+        i1 = new ImageIcon("app/src/main/resources/imagenes/supermario64.png");
         i2 = new ImageIcon("app/src/main/resources/imagenes/supermario64.png");
         i3 = new ImageIcon("app/src/main/resources/imagenes/Pacman.jpg");
         i4 = new ImageIcon("app/src/main/resources/imagenes/MK.png");
@@ -153,11 +155,12 @@ public class SistemaJuego extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent actionEvent) {
         if(actionEvent.getActionCommand().equals(b0.getActionCommand())){
             BattleOfMidway game = new BattleOfMidway();
-            game.run(1.0 / 60.0);
-            System.exit(0);
+            t = new Thread(){
+                public void run(){
+                    game.run(1.0 / 60.0);
+                }
+            };
+            t.start();
         }
-    }
-    public static void main(String[] args) {
-        new SistemaJuego();
     }
 }
