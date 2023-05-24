@@ -41,7 +41,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'jgame23.App'
+    mainClass = 'jgame23.Main'
 }
 
  
@@ -76,7 +76,7 @@ application {
 	}
   
 		manifest { 
-			attributes  'Main-Class': 'jgame23.App', 
+			attributes  'Main-Class': 'jgame23.Main',
                         'Implementation-Title': 'POO Juego', 
                         'Implementation-Version': archiveVersion.get()
 		} 
