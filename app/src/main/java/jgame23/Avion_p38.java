@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import static java.lang.System.*;
 
-class Avion_p38 implements Movible {
+class Avion_p38 implements Movible{
     final double NAVE_DESPLAZAMIENTO=150.0;
     BufferedImage imagen = null;
     private Point2D.Double posicion = new Point2D.Double();
@@ -40,9 +40,6 @@ class Avion_p38 implements Movible {
         return posicion.getY();
     }
 
-    public void update(double delta) {
-    }
-
     public void draw(Graphics2D g) {
         g.drawImage(imagen, (int) posicion.getX(), (int) posicion.getY(), null);
     }
@@ -66,6 +63,9 @@ class Avion_p38 implements Movible {
             //shipX += NAVE_DESPLAZAMIENTO * delta;
             this.setX(this.getX() + NAVE_DESPLAZAMIENTO * delta);
         }
+        if (keyboard.isKeyPressed(KeyEvent.VK_Z)){
+
+        }
         // Esc fin del juego
         LinkedList< KeyEvent > keyEvents = keyboard.getEvents();
         for (KeyEvent event: keyEvents) {
@@ -74,7 +74,6 @@ class Avion_p38 implements Movible {
                 exit(0);
             }
         }
-        this.update(delta);
     }
 
     @Override
