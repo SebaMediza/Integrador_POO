@@ -1,4 +1,5 @@
 package jgame23;
+import java.awt.Graphics2D;
 
 public abstract class Arma {
     protected int danio;
@@ -6,5 +7,6 @@ public abstract class Arma {
 
     public void disparar(){
         Municion bala = new Municion("src/main/resources/imagenes/municion.png");
+        ContenedorGrafico.addMunicionAmiga(bala);
     }
 }
