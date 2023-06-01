@@ -11,6 +11,7 @@ class Avion_p38 implements Movible {
     final double NAVE_DESPLAZAMIENTO=150.0;
     BufferedImage imagen = null;
     private Point2D.Double posicion = new Point2D.Double();
+    private ArmaGenerica gun = new ArmaGenerica();
 
     public Avion_p38() {}
     public void setImagen(BufferedImage img) {
@@ -54,6 +55,9 @@ class Avion_p38 implements Movible {
         if (keyboard.isKeyPressed(KeyEvent.VK_RIGHT)){
             //shipX += NAVE_DESPLAZAMIENTO * delta;
             this.setX(this.getX() + NAVE_DESPLAZAMIENTO * delta);
+        }
+        if (keyboard.isKeyPressed(KeyEvent.VK_Z)){
+            gun.dispararP38();
         }
         // Esc fin del juego
         LinkedList< KeyEvent > keyEvents = keyboard.getEvents();
