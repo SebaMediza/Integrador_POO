@@ -25,6 +25,7 @@ public class BattleOfMidway extends JGame {
     }
     BufferedImage img_fondo = null;
     Avion_p38 avionP38 = new Avion_p38();
+    Avion_p38 avionP38Enemigo = new Avion_p38();
 
 
     public BattleOfMidway() {
@@ -37,6 +38,8 @@ public class BattleOfMidway extends JGame {
             img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo.jpg")));
             avionP38.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38.png"))));
             avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
+            avionP38Enemigo.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38 - Copy.png"))));
+            avionP38Enemigo.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -47,6 +50,11 @@ public class BattleOfMidway extends JGame {
         avionP38.mover(delta, keyboard);
         for (int i = 0; i < BattleOfMidway.municionAmiga.size(); i++) {
             BattleOfMidway.municionAmiga.get(i).setPosition(municionAmiga.get(i).getX(), municionAmiga.get(i).getY() - 5);
+//            System.out.println(municionAmiga.get(i).getX());
+//            System.out.println(municionAmiga.get(i).getY());
+            if (DetectorColiciones.detectarColicion(municionAmiga.get(i), avionP38Enemigo)){
+                System.out.println("*C murio*");
+            }
         }
         for (int i = 0; i < BattleOfMidway.municionEnemiga.size(); i++) {
             BattleOfMidway.municionEnemiga.get(i).setPosition(municionEnemiga.get(i).getX(), municionEnemiga.get(i).getY() + 5);
@@ -57,6 +65,7 @@ public class BattleOfMidway extends JGame {
     public void gameDraw(Graphics2D g) {
         g.drawImage(img_fondo, 0, 0, null);// imagen de fondo
         avionP38.draw(g);
+        avionP38Enemigo.draw(g);
         for (int i = 0; i < BattleOfMidway.municionAmiga.size(); i++) {
             BattleOfMidway.municionAmiga.get(i).draw(g);
         }

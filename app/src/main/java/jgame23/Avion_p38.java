@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import static java.lang.System.*;
 
-class Avion_p38 implements Movible {
+class Avion_p38 extends ObjetoGrafico implements Movible {
     final double NAVE_DESPLAZAMIENTO=150.0;
     BufferedImage imagen = null;
     private Point2D.Double posicion = new Point2D.Double();
