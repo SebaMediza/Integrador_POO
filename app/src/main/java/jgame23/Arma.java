@@ -5,9 +5,13 @@ public abstract class Arma {
     protected int danio;
     protected int alcance;
 
-    public void dispararP38(){
-        Municion bala = new Municion("imagenes/municion.png");
+    public void disparar(Avion_p38 plane){
+        Municion bala = new Municion("imagenes/municion4.png");
         BattleOfMidway.addMunicionAmiga(bala);
+        bala.setPosition(plane.getX() + 18, plane.getY());
+    }
+
+    public  void dispararEnemigo(){
 
     }
 }

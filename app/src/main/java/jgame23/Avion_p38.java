@@ -1,4 +1,5 @@
 package jgame23;
+
 import com.entropyinteractive.Keyboard;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -57,7 +58,7 @@ class Avion_p38 implements Movible {
             this.setX(this.getX() + NAVE_DESPLAZAMIENTO * delta);
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_Z)){
-            gun.dispararP38();
+            gun.disparar(this);
         }
         // Esc fin del juego
         LinkedList< KeyEvent > keyEvents = keyboard.getEvents();

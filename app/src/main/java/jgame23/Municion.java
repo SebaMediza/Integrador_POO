@@ -1,7 +1,6 @@
 package jgame23;
 
 import com.entropyinteractive.Keyboard;
-
 import java.awt.*;
 
 public class Municion extends ObjetoGrafico{
@@ -9,7 +8,9 @@ public class Municion extends ObjetoGrafico{
         super(filename);
     }
     @Override
-    public void draw(Graphics2D g) {}
+    public void draw(Graphics2D g) {
+        super.draw(g);
+    }
     @Override
     public void mover(double delta, Keyboard keyboard) {}
     @Override

@@ -26,14 +26,15 @@ public class BattleOfMidway extends JGame {
     BufferedImage img_fondo = null;
     Avion_p38 avionP38 = new Avion_p38();
 
+
     public BattleOfMidway() {
         super("Battle Of Midway", 550, 1300);
-        System.out.println(appProperties.stringPropertyNames());
+//        System.out.println(appProperties.stringPropertyNames());
     }
 
     public void gameStartup() {
         try {
-            img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo2.png")));
+            img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo.jpg")));
             avionP38.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38.png"))));
             avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
         } catch (Exception e) {
@@ -45,8 +46,12 @@ public class BattleOfMidway extends JGame {
         Keyboard keyboard = this.getKeyboard();
         avionP38.mover(delta, keyboard);
         for (int i = 0; i < BattleOfMidway.municionAmiga.size(); i++) {
-            BattleOfMidway.municionAmiga.get(i).setPosition((double) getHeight() + 1, (double) getWidth() + 1);
+            BattleOfMidway.municionAmiga.get(i).setPosition(municionAmiga.get(i).getX(), municionAmiga.get(i).getY() - 5);
         }
+        for (int i = 0; i < BattleOfMidway.municionEnemiga.size(); i++) {
+            BattleOfMidway.municionEnemiga.get(i).setPosition(municionEnemiga.get(i).getX(), municionEnemiga.get(i).getY() + 5);
+        }
+
     }
 
     public void gameDraw(Graphics2D g) {
