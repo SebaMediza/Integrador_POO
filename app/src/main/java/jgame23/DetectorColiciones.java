@@ -5,17 +5,20 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Vector;
 
 public abstract class DetectorColiciones extends Rectangle {
     private static boolean colicion = false;
 
-    public static boolean detectarColicion(ObjetoGrafico objetoGrafico1, Avion_p38 objetoGrafico2){
-//        Rectangle objeto1 = new Rectangle((int) objetoGrafico1.getX(),(int) objetoGrafico1.getY(),(int)  objetoGrafico1.getHeigth(), (int) objetoGrafico1.getWidth());
-//        Rectangle objeto2 = new Rectangle((int) objetoGrafico2.getX(),(int) objetoGrafico2.getY(),(int)  objetoGrafico2.getHeigth(), (int) objetoGrafico2.getWidth());
-//        if (objeto2.intersects(objeto1)) {
-//            colicion = true;
-//            System.out.println("coco");
-//        }
+    public static boolean detectarColicion(Municion objetoGrafico1, Avion_p38 objetoGrafico2, int nro_bala){
+        colicion = false;
+        Rectangle objeto1 = new Rectangle((int) objetoGrafico1.getX(),(int) objetoGrafico1.getY(),(int) objetoGrafico1.getWidth(), (int) objetoGrafico1.getHeigth());
+        Rectangle objeto2 = new Rectangle((int) objetoGrafico2.getX(),(int) objetoGrafico2.getY(),(int) objetoGrafico1.getHeigth(),(int) objetoGrafico1.getWidth());
+//        Rectangle objeto2 = new Rectangle();
+        if (objeto1.intersects(objeto2)) {
+            colicion = true;
+            System.out.println("hit");
+        }
         return colicion;
     }
 

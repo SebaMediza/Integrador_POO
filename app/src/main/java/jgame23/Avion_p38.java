@@ -11,8 +11,8 @@ import static java.lang.System.*;
 class Avion_p38 extends ObjetoGrafico implements Movible {
     final double NAVE_DESPLAZAMIENTO=150.0;
     BufferedImage imagen = null;
-    private Point2D.Double posicion = new Point2D.Double();
-    private ArmaGenerica gun = new ArmaGenerica();
+    private final Point2D.Double posicion = new Point2D.Double();
+    private final ArmaGenerica gun = new ArmaGenerica();
 
     public Avion_p38() {}
     public void setImagen(BufferedImage img) {

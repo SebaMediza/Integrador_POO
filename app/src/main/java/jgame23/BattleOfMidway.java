@@ -11,13 +11,13 @@ public class BattleOfMidway extends JGame {
     //Date dInit = new Date();
     //Date dAhora;
     //SimpleDateFormat ft = new SimpleDateFormat ("mm:ss");
-    private static Vector<ObjetoGrafico> municionAmiga = new Vector<>();
-    private static Vector<ObjetoGrafico> municionEnemiga = new Vector<>();
+    private static Vector<Municion> municionAmiga = new Vector<>();
+    private static Vector<Municion> municionEnemiga = new Vector<>();
     private static  Vector<ObjetoGrafico> avionEnemigos = new Vector<>();
-    public static void addMunicionAmiga(ObjetoGrafico objetoGrafico){
+    public static void addMunicionAmiga(Municion objetoGrafico){
         municionAmiga.add(objetoGrafico);
     }
-    public static void addMunicionEnemiga(ObjetoGrafico objetoGrafico){
+    public static void addMunicionEnemiga(Municion objetoGrafico){
         municionEnemiga.add(objetoGrafico);
     }
     public static void addAvionEnemigo(ObjetoGrafico objetoGrafico){
@@ -27,10 +27,9 @@ public class BattleOfMidway extends JGame {
     Avion_p38 avionP38 = new Avion_p38();
     Avion_p38 avionP38Enemigo = new Avion_p38();
 
-
     public BattleOfMidway() {
         super("Battle Of Midway", 550, 1300);
-//        System.out.println(appProperties.stringPropertyNames());
+        System.out.println(appProperties.stringPropertyNames());
     }
 
     public void gameStartup() {
@@ -43,6 +42,8 @@ public class BattleOfMidway extends JGame {
         } catch (Exception e) {
             System.out.println(e);
         }
+
+        BattleOfMidway.addAvionEnemigo(avionP38Enemigo);
     }
 
     public void gameUpdate(double delta) {
@@ -50,10 +51,8 @@ public class BattleOfMidway extends JGame {
         avionP38.mover(delta, keyboard);
         for (int i = 0; i < BattleOfMidway.municionAmiga.size(); i++) {
             BattleOfMidway.municionAmiga.get(i).setPosition(municionAmiga.get(i).getX(), municionAmiga.get(i).getY() - 5);
-//            System.out.println(municionAmiga.get(i).getX());
-//            System.out.println(municionAmiga.get(i).getY());
-            if (DetectorColiciones.detectarColicion(municionAmiga.get(i), avionP38Enemigo)){
-                System.out.println("*C murio*");
+            if (DetectorColiciones.detectarColicion(municionAmiga.get(i), avionP38Enemigo, i)){
+                municionAmiga.removeElementAt(i);
             }
         }
         for (int i = 0; i < BattleOfMidway.municionEnemiga.size(); i++) {
