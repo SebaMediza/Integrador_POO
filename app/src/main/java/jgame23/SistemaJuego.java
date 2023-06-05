@@ -1,10 +1,8 @@
 package jgame23;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
-import java.util.Objects;
 
 public class SistemaJuego extends JFrame implements ActionListener{
     JFrame mainFrame;
@@ -16,10 +14,11 @@ public class SistemaJuego extends JFrame implements ActionListener{
     JButton homeButton, communityButton, userButton;
     Thread t;
 
+
     public SistemaJuego() {
         this.GUI();
     }
-    private void GUI(){
+    private void GUI() {
         /*CONFIGURACION DEL FRAME PRINCIPAL*/
         mainFrame = new JFrame();
         mainFrame.setLayout(new BorderLayout());
@@ -38,18 +37,18 @@ public class SistemaJuego extends JFrame implements ActionListener{
         constraints.insets = new Insets(5,5,5,5);
         leftPanel.setBackground(new Color(100,100,100));
 
-        user = new ImageIcon("app/src/main/resources/imagenes/hombre.png");
+        user = new ImageIcon("app/src/main/resources/ImagesSisJuego/hombre.png");
         userButton = new JButton("Ususario");
         userButton.setIcon(user);
         constraints.gridx = 0;
         constraints.gridy = 0;
         leftPanel.add(userButton, constraints);
-        home = new ImageIcon("app/src/main/resources/imagenes/hogar.png");
+        home = new ImageIcon("app/src/main/resources/ImagesSisJuego/hogar.png");
         homeButton = new JButton("Libreria");
         homeButton.setIcon(home);
         constraints.gridx = 1;
         leftPanel.add(homeButton, constraints);
-        community = new ImageIcon("app/src/main/resources/imagenes/equipo.png");
+        community = new ImageIcon("app/src/main/resources/ImagesSisJuego/equipo.png");
         communityButton = new JButton("Comunidad");
         communityButton.setIcon(community);
         constraints.gridx = 2;
@@ -62,7 +61,7 @@ public class SistemaJuego extends JFrame implements ActionListener{
         constraints1.insets = new Insets(3,3,3,3);
 
         /*BOTON Y MINIATURA DEL JUEGO*/
-        i0 = new ImageIcon("app/src/main/resources/imagenes/1943.png");
+        i0 = new ImageIcon("app/src/main/resources/ImagesSisJuego/1943.png");
         l0 = new JLabel(i0);
         b0 = new JButton("Jugar");
         b0.addActionListener(this);
@@ -72,21 +71,21 @@ public class SistemaJuego extends JFrame implements ActionListener{
         constraints1.gridy = 1;
         midPanel.add(b0, constraints1);
         /*BOTONES Y JUEGOS DE RELLENO*/
-        i1 = new ImageIcon("app/src/main/resources/imagenes/supermario64.png");
-        i2 = new ImageIcon("app/src/main/resources/imagenes/supermario64.png");
-        i3 = new ImageIcon("app/src/main/resources/imagenes/Pacman.jpg");
-        i4 = new ImageIcon("app/src/main/resources/imagenes/MK.png");
-        i5 = new ImageIcon("app/src/main/resources/imagenes/BattleFrontII.png");
-        i6 = new ImageIcon("app/src/main/resources/imagenes/Tetris.png");
-        i7 = new ImageIcon("app/src/main/resources/imagenes/Buscaminas.png");
-        i8 = new ImageIcon("app/src/main/resources/imagenes/bomberman.png");
-        i9 = new ImageIcon("app/src/main/resources/imagenes/streetfighter.png");
-        i10 = new ImageIcon("app/src/main/resources/imagenes/pinball.png");
-        i11 = new ImageIcon("app/src/main/resources/imagenes/gta.png");
-        i12 = new ImageIcon("app/src/main/resources/imagenes/CrashBandicoot.png");
-        i13 = new ImageIcon("app/src/main/resources/imagenes/DonkeyKong.png");
-        i14 = new ImageIcon("app/src/main/resources/imagenes/counterstrike.jpg");
-        i15 = new ImageIcon("app/src/main/resources/imagenes/phasmophobia.png");
+        i1 = new ImageIcon("app/src/main/resources/ImagesSisJuego/Grounded.jpg");
+        i2 = new ImageIcon("app/src/main/resources/ImagesSisJuego/supermario64.png");
+        i3 = new ImageIcon("app/src/main/resources/ImagesSisJuego/Pacman.jpg");
+        i4 = new ImageIcon("app/src/main/resources/ImagesSisJuego/MK.png");
+        i5 = new ImageIcon("app/src/main/resources/ImagesSisJuego/BattleFrontII.png");
+        i6 = new ImageIcon("app/src/main/resources/ImagesSisJuego/Tetris.png");
+        i7 = new ImageIcon("app/src/main/resources/ImagesSisJuego/Buscaminas.png");
+        i8 = new ImageIcon("app/src/main/resources/ImagesSisJuego/bomberman.png");
+        i9 = new ImageIcon("app/src/main/resources/ImagesSisJuego/streetfighter.png");
+        i10 = new ImageIcon("app/src/main/resources/ImagesSisJuego/pinball.png");
+        i11 = new ImageIcon("app/src/main/resources/ImagesSisJuego/gta.png");
+        i12 = new ImageIcon("app/src/main/resources/ImagesSisJuego/CrashBandicoot.png");
+        i13 = new ImageIcon("app/src/main/resources/ImagesSisJuego/DonkeyKong.png");
+        i14 = new ImageIcon("app/src/main/resources/ImagesSisJuego/counterstrike.jpg");
+        i15 = new ImageIcon("app/src/main/resources/ImagesSisJuego/phasmophobia.png");
         l1 = new JLabel(i1);
         l2 = new JLabel(i2);
         l3 = new JLabel(i3);
@@ -148,19 +147,18 @@ public class SistemaJuego extends JFrame implements ActionListener{
         midPanel.add(l14, constraints1);
         constraints1.gridx = 8;
         midPanel.add(l15, constraints1);
-        System.out.println(System.getProperty("user.dir"));
+        //System.out.println(System.getProperty("user.dir"));
 
     }
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if(actionEvent.getActionCommand().equals(b0.getActionCommand())){
             BattleOfMidway game = new BattleOfMidway();
-            t = new Thread(){
-                public void run(){
-                    game.run(1.0 / 60.0);
-                }
-            };
+            t = new Thread(() -> game.run(1.0 / 60.0));
             t.start();
         }
+    }
+    public static void main(String[] args) {
+        new SistemaJuego();
     }
 }

@@ -1,5 +1,8 @@
 package jgame23;
 
+
+//public class Pow {
+
 public class Pow extends Power_up{
     
     public Pow(int salud) {
@@ -10,6 +13,7 @@ public class Pow extends Power_up{
     public void activar() {
 
     }
+
 
 
     
