@@ -18,9 +18,13 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
     private final Point2D.Double posicion = new Point2D.Double();
     private final ArmaGenerica gun = new ArmaGenerica();
 
-    public Avion_p38() {
+    public Avion_p38(String file) {
+        super(file);
         try {
-
+//            avionP38.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38.png"))));
+//            avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
+            this.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(file))));
+//            this.setPosicion(getWidth() / 2, getHeight() / 2);
         }catch (Exception e){
             throw new RuntimeException(e);
         }

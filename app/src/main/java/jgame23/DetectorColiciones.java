@@ -52,7 +52,7 @@ public abstract class DetectorColiciones extends Rectangle {
             if (objeto1.intersects(objeto2)) {
                 colicion = true;
 //                BattleOfMidway.avionEnemigos.remove(plane);
-                System.out.println("hit");
+//                System.out.println("hit");
                 System.out.println(BattleOfMidway.avionEnemigos.size());
                 valor = BattleOfMidway.avionEnemigos.indexOf(plane);
             }
