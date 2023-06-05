@@ -1,11 +1,15 @@
 package jgame23;
 
 import com.entropyinteractive.Keyboard;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
+import java.util.Objects;
+
 import static java.lang.System.*;
 
 class Avion_p38 extends ObjetoGrafico implements Movible {
@@ -14,7 +18,13 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
     private final Point2D.Double posicion = new Point2D.Double();
     private final ArmaGenerica gun = new ArmaGenerica();
 
-    public Avion_p38() {}
+    public Avion_p38() {
+        try {
+
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
     public void setImagen(BufferedImage img) {
         this.imagen = img;
     }
@@ -59,6 +69,12 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_Z)){
             gun.disparar(this);
+        }
+        if (keyboard.isKeyPressed(KeyEvent.VK_H)){
+            for (int i=0;i<10;i++){
+                BattleOfMidway.addAvionEnemigo(new AvionEnemigo("imagenes/avionEnemigo.png"));
+            }
+            out.println(BattleOfMidway.avionEnemigos.size());
         }
         // Esc fin del juego
         LinkedList< KeyEvent > keyEvents = keyboard.getEvents();

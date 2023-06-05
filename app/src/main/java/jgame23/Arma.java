@@ -1,9 +1,7 @@
 package jgame23;
-import java.awt.Graphics2D;
 
 public abstract class Arma {
     protected final int danio = 10;
-    protected int alcance;
 
     public void disparar(Avion_p38 plane){
         Municion bala = new Municion("imagenes/municion4.png");

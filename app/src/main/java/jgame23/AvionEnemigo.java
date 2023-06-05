@@ -11,6 +11,8 @@ import java.util.Objects;
 
 public class AvionEnemigo extends Enemigo{
     BufferedImage picture;
+    private int max = 1000;
+    private int min = 500;
     Point2D.Double position = new Point2D.Double();
     public AvionEnemigo(String filename){
         try {
@@ -18,7 +20,7 @@ public class AvionEnemigo extends Enemigo{
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
-        this.setPosition( getHeight() / 2,getWidth() / 2);
+        this.setPosition((getHeight() / 2) + 100.0, (getWidth() / 2) + 100.0);
     }
     @Override
     public void disparar() {

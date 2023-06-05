@@ -22,10 +22,42 @@ public abstract class DetectorColiciones extends Rectangle {
         return colicion;
     }
 
-    public static boolean detectarColicion(ObjetoGrafico objetoGrafico1, Enemigo objetoGrafico2){
-        if (objetoGrafico1.getX() == objetoGrafico2.getX() && objetoGrafico1.getY() == objetoGrafico2.getY()){
-            colicion = true;
+    public static boolean detectarColicion(Avion_p38 avionP38){
+        int valor = -1;
+        for (AvionEnemigo plane: BattleOfMidway.avionEnemigos) {
+            colicion = false;
+            Rectangle objeto1 = new Rectangle((int) avionP38.getX(), (int) avionP38.getY(), (int) avionP38.getHeigth(), (int) avionP38.getWidth());
+            Rectangle objeto2 = new Rectangle((int) plane.getX(), (int) plane.getY(), (int) plane.getHeigth(), (int) plane.getWidth());
+//        Rectangle objeto2 = new Rectangle();
+            if (objeto1.intersects(objeto2)) {
+                colicion = true;
+//                BattleOfMidway.avionEnemigos.remove(plane);
+//                System.out.println("hit");
+//                System.out.println(BattleOfMidway.avionEnemigos.size());
+//                valor = BattleOfMidway.avionEnemigos.indexOf(plane);
+            }
         }
         return colicion;
+//        return valor;
+
+    }
+
+    public static int detectarColicion(Municion objetoGrafico1){
+        int valor = -1;
+        for (AvionEnemigo plane: BattleOfMidway.avionEnemigos) {
+//            colicion = false;
+            Rectangle objeto1 = new Rectangle((int) objetoGrafico1.getX(), (int) objetoGrafico1.getY(), (int) objetoGrafico1.getWidth(), (int) objetoGrafico1.getHeigth());
+            Rectangle objeto2 = new Rectangle((int) plane.getX(), (int) plane.getY(), (int) plane.getHeigth(), (int) plane.getWidth());
+//        Rectangle objeto2 = new Rectangle();
+            if (objeto1.intersects(objeto2)) {
+                colicion = true;
+//                BattleOfMidway.avionEnemigos.remove(plane);
+                System.out.println("hit");
+                System.out.println(BattleOfMidway.avionEnemigos.size());
+                valor = BattleOfMidway.avionEnemigos.indexOf(plane);
+            }
+        }
+//        return colicion;
+        return valor;
     }
 }

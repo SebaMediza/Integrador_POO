@@ -16,12 +16,12 @@ public abstract class ObjetoGrafico extends Rectangle implements Movible{
         try{
             this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filename)));
         }catch (IOException e){
-            System.out.println(e);
+            throw new RuntimeException(e);
         }
     }
     public ObjetoGrafico(){}
-    public double getWidth(){return this.image.getWidth(null);}
-    public double getHeigth(){return this.image.getHeight(null);}
+    public double getWidth(){return this.image.getWidth();}
+    public double getHeigth(){return this.image.getHeight();}
     public double getX(){return this.position.getX();}
     public double getY(){return this.position.getY();}
     public void setPosition(double x, double y){this.position.setLocation(x,y);}
