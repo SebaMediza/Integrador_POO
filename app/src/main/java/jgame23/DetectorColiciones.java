@@ -10,7 +10,7 @@ import java.util.Vector;
 public abstract class DetectorColiciones extends Rectangle {
     private static boolean colicion = false;
 
-    public static boolean detectarColicion(Municion objetoGrafico1, Avion_p38 objetoGrafico2, int nro_bala){
+    public static boolean detectarColicion(Municion objetoGrafico1, AvionEnemigo objetoGrafico2, int nro_bala){
         colicion = false;
         Rectangle objeto1 = new Rectangle((int) objetoGrafico1.getX(),(int) objetoGrafico1.getY(),(int) objetoGrafico1.getWidth(), (int) objetoGrafico1.getHeigth());
         Rectangle objeto2 = new Rectangle((int) objetoGrafico2.getX(),(int) objetoGrafico2.getY(),(int) objetoGrafico1.getHeigth(),(int) objetoGrafico1.getWidth());
