@@ -1,26 +1,20 @@
 package jgame23;
 
-//public class Auto extends Power_up {
-//    public Auto(int duracion){
-
+import com.entropyinteractive.Keyboard;
 
 public class Auto extends Power_up{
+    @Override
+    public void mover(double delta, Keyboard keyboard) {
 
-    public double newVelocidad;
-
-    public Auto(int duracion, double newVelocidad){
-
-        super(duracion);
-        this.newVelocidad = newVelocidad;
     }
 
     @Override
-    public void activar(){
-
+    public double getCoordenadas() {
+        return 0;
     }
 
-    public void desactivar(){
-        super.desactivar();
+    @Override
+    protected void activar(Avion_p38 avionP38) {
+        super.activar(avionP38);
     }
-
 }

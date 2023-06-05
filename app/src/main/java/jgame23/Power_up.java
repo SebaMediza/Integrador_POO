@@ -1,16 +1,17 @@
 package jgame23;
 
-public abstract class Power_up {
+public abstract class Power_up extends Bonus {
     protected int duracion = 20;
     protected boolean activo;
     protected int salud;
 
-    public Power_up(int duracion){
-        this.duracion = this.duracion;
+    public Power_up(){
+        this.duracion = duracion;
         this.activo = false;
     }
 
-    public abstract void activar();
+    protected void activar(Avion_p38 avionP38) {}
+
 
     public void desactivar(){
         activo = false;

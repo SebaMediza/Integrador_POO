@@ -9,4 +9,8 @@ public abstract class Enemigo extends ObjetoGrafico{
     protected void disparar(){
         gun.disparar(this);
     }
+
+    protected void dispararMisil(){
+        gun.dispararMisil(this);
+    }
 }
