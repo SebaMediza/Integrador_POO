@@ -3,9 +3,10 @@ package jgame23;
 public abstract class Power_up {
     protected int duracion = 20;
     protected boolean activo;
+    protected int salud;
 
     public Power_up(int duracion){
-        this.duracion = duracion;
+        this.duracion = this.duracion;
         this.activo = false;
     }
 
@@ -30,5 +31,4 @@ public abstract class Power_up {
     public void setActivo(boolean activo){
         this.activo = activo;
     }
-
 }
