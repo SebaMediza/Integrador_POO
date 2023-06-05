@@ -81,7 +81,7 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
 
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_H)){
-            BattleOfMidway.addAvionEnemigo(new AvionEnemigo("imagenes/avionEnemigo.png"));
+            BattleOfMidway.addAvionEnemigoArrayList(new AvionEnemigo("imagenes/avionEnemigo.png"));
         }
         // Esc fin del juego
         LinkedList< KeyEvent > keyEvents = keyboard.getEvents();

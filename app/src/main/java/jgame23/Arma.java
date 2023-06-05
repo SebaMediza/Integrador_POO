@@ -5,20 +5,19 @@ public abstract class Arma {
 
     public void disparar(Avion_p38 plane){
         Municion bala = new Municion("imagenes/municion4.png");
-//        BattleOfMidway.addMunicionAmiga(bala);
         BattleOfMidway.addMunicionAmigaArrayList(bala);
         bala.setPosition(plane.getX() + 18, plane.getY());
     }
 
     public void disparar(Enemigo plane){
         Municion bala = new Municion("imagenes/municion4.png");
-        BattleOfMidway.addMunicionEnemiga(bala);
+        BattleOfMidway.addMunicionEnemigaArrayList(bala);
         bala.setPosition(plane.getX(), plane.getY());
     }
 
     public void dispararMisil(Enemigo enemigo){
         Misil misil = new Misil("imagenes/misil.png");
-        BattleOfMidway.addMisilEnemigo(misil);
+        BattleOfMidway.addMisilArrayList(misil);
         misil.setPosition(enemigo.getX(), enemigo.getY());
     }
 }
