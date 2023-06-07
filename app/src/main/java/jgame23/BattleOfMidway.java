@@ -26,6 +26,7 @@ public class BattleOfMidway extends JGame {
 
     public static int finalScore = 0;
     BufferedImage img_fondo = null;
+    private  int offSetY;
     BufferedImage kabom = null;
     Avion_p38 avionP38;
 
@@ -38,11 +39,12 @@ public class BattleOfMidway extends JGame {
         try {
             avionP38 = new Avion_p38("imagenes/avionp38.png");
             avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
-            img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo.jpg")));
+            img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo3.png")));
             kabom = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/explocion.gif")));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        offSetY = img_fondo.getHeight() - getHeight();
     }
 
     public void gameUpdate(double delta) {
@@ -84,7 +86,7 @@ public class BattleOfMidway extends JGame {
     }
 
     public void gameDraw(Graphics2D g) {
-        g.drawImage(img_fondo, 0, 0, null);// imagen de fondo
+        g.drawImage(img_fondo, 0, 0,null);// imagen de fondo
         avionP38.draw(g);
         for (Municion bala : municionAmigaArrayList){
             bala.draw(g);
