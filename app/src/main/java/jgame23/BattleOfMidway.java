@@ -7,31 +7,6 @@ import javax.imageio.*; //imagenes
 import java.util.*;
 
 public class BattleOfMidway extends JGame {
-//    Date dInit = new Date();
-//    Date dAhora;
-//    SimpleDateFormat ft = new SimpleDateFormat ("mm:ss");
-//    private final int minX=8;
-//    private final int maxX=480;
-//    private final int minY=48;
-//    private final int maxY=780;
-//    public static Vector<Municion> municionAmiga = new Vector<>();
-//    public static Vector<Municion> municionEnemiga = new Vector<>();
-//    public static  Vector<AvionEnemigo> avionEnemigos = new Vector<>();
-//    public static Vector<Misil> misilEnemigo = new Vector<>();
-//    public static void addMunicionAmiga(Municion municion){
-//        municionAmiga.add(municion);
-//    }
-//    public static void addMunicionEnemiga(Municion municion){
-//        municionEnemiga.add(municion);
-//    }
-//    public static void addAvionEnemigo(AvionEnemigo avionEnemigo){
-//        avionEnemigos.add(avionEnemigo);
-//    }
-//    public static void addMisilEnemigo(Misil misil){
-//        misilEnemigo.add(misil);
-//    }
-//    private final int min = 1; // Valor mínimo del rango
-//    private final int max = 100; // Valor máximo del rango
     public static ArrayList<Municion> municionAmigaArrayList = new ArrayList<>();
     public static ArrayList<Municion> municionEnemigaArrayList = new ArrayList<>();
     public static ArrayList<AvionEnemigo> avionEnemigoArrayList = new ArrayList<>();
@@ -67,9 +42,6 @@ public class BattleOfMidway extends JGame {
             kabom = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/explocion.gif")));
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-        for (int i=0;i<1;i++){
-            addAvionEnemigoArrayList(new AvionEnemigo("imagenes/avionEnemigo.png"));
         }
     }
 
@@ -109,21 +81,6 @@ public class BattleOfMidway extends JGame {
             avionEnemigo.disparar();
 //            avionEnemigo.dispararMisil();
         }
-//        ArrayList<Municion> toDeleteBulletAmiga = new ArrayList<>();
-//        ArrayList<Municion> toDeleteBulletEnemiga = new ArrayList<>();
-//        for (Municion municionAmiga : municionAmigaArrayList){
-//            for (Municion municionEnemiga : municionEnemigaArrayList){
-//                DetectorColiciones.detectarColicion(municionAmiga,municionEnemiga);
-//                toDeleteBulletAmiga.add(municionAmiga);
-//                toDeleteBulletEnemiga.add(municionEnemiga);
-//            }
-//        }
-//        for (Municion municion : toDeleteBulletEnemiga){
-//            municionAmigaArrayList.remove(municion);
-//        }
-//        for (Municion municion : toDeleteBulletAmiga){
-//            municionEnemigaArrayList.remove(municion);
-//        }
     }
 
     public void gameDraw(Graphics2D g) {

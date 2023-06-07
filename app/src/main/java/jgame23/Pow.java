@@ -1,14 +1,18 @@
 package jgame23;
 
-
-//public class Pow {
-
 import com.entropyinteractive.Keyboard;
 
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
+
 public class Pow extends Power_up{
-    
-    public Pow(int salud) {
-        super();
+
+    BufferedImage pow = null;
+    public Pow(String filename) {
+        super(filename);
     }
 
     @Override
