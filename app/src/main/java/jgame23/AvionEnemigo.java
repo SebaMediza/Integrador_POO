@@ -9,13 +9,17 @@ import java.util.Objects;
 
 public class AvionEnemigo extends Enemigo{
     private long time, lastTime;
+
+    private boolean movingRight;
+
     public AvionEnemigo(String filename){
         try {
             this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filename)));
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
-        this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 100);
+
+        //this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 100);
         time = 0;
         lastTime = System.currentTimeMillis();
     }
@@ -36,6 +40,10 @@ public class AvionEnemigo extends Enemigo{
 
     @Override
     public void mover(double delta, Keyboard keyboard) {}
+
+    public void moverAutomatico(){
+
+    }
 
     @Override
     public double getCoordenadas() {
