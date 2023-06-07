@@ -17,17 +17,18 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
     BufferedImage imagen = null;
     private final Point2D.Double posicion = new Point2D.Double();
     private final ArmaGenerica gun = new ArmaGenerica();
+    private int enegia = 100;
+    private long time, lastTime;
 
     public Avion_p38(String file) {
         super(file);
         try {
-//            avionP38.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38.png"))));
-//            avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
             this.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(file))));
-//            this.setPosicion(getWidth() / 2, getHeight() / 2);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+        time = 0;
+        lastTime = System.currentTimeMillis();
     }
     public void setImagen(BufferedImage img) {
         this.imagen = img;
@@ -47,7 +48,6 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
     public double getY() {
         return posicion.getY();
     }
-    public void update(double delta) {}
     public void draw(Graphics2D g) {
         g.drawImage(imagen, (int) posicion.getX(), (int) posicion.getY(), null);
     }
@@ -70,15 +70,18 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
         if (keyboard.isKeyPressed(KeyEvent.VK_RIGHT)){
             //shipX += NAVE_DESPLAZAMIENTO * delta;
             this.setX(this.getX() + NAVE_DESPLAZAMIENTO * delta);
+//            out.println(this.getX());
+//            out.println(this.getY());
         }
-        if (keyboard.isKeyPressed(KeyEvent.VK_Z)){
+        time += System.currentTimeMillis() - lastTime;
+        lastTime = System.currentTimeMillis();
+        if (keyboard.isKeyPressed(KeyEvent.VK_Z) && time > 300){
             gun.disparar(this);
+            time = 0;
+
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_H)){
-            for (int i=0;i<10;i++){
-                BattleOfMidway.addAvionEnemigo(new AvionEnemigo("imagenes/avionEnemigo.png"));
-            }
-            out.println(BattleOfMidway.avionEnemigos.size());
+            BattleOfMidway.addAvionEnemigoArrayList(new AvionEnemigo("imagenes/avionEnemigo.png"));
         }
         // Esc fin del juego
         LinkedList< KeyEvent > keyEvents = keyboard.getEvents();
@@ -88,7 +91,26 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
                 exit(0);
             }
         }
-        this.update(delta);
+    }
+
+    public void hit(){
+        this.enegia = this.enegia - 1;
+    }
+    public void superHit(){
+        this.enegia = this.enegia - 5;
+    }
+    public void crash(){
+        this.enegia = this.enegia - 10;
+    }
+    public int getEnegia(){
+        return Math.max(enegia, 0);
+    }
+    public void setEnegia(int enegia){
+        if (this.enegia + enegia > 100){
+            this.enegia = 100;
+        }else {
+            this.enegia += enegia;
+        }
     }
 
     @Override

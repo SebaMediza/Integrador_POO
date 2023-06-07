@@ -1,16 +1,22 @@
 package jgame23;
 
-public abstract class Power_up {
+import java.awt.*;
+
+public abstract class Power_up extends Bonus {
     protected int duracion = 20;
     protected boolean activo;
     protected int salud;
 
-    public Power_up(int duracion){
-        this.duracion = this.duracion;
-        this.activo = false;
+    public Power_up(String filename){
+        super(filename);
     }
 
-    public abstract void activar();
+    protected void activar(Avion_p38 avionP38) {}
+
+    @Override
+    public void draw(Graphics2D g) {
+        super.draw(g);
+    }
 
     public void desactivar(){
         activo = false;
