@@ -41,6 +41,7 @@ public class BattleOfMidway extends JGame {
             avionP38 = new Avion_p38("imagenes/avionp38.png");
             avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
             img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo3.png")));
+            //imagenNubes = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/Enemigo.png")));
             kabom = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/explocion.gif")));
         } catch (Exception e) {
             throw new RuntimeException(e);
