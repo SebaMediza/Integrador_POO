@@ -160,6 +160,9 @@ public class SistemaJuego extends JFrame implements ActionListener{
     }
     
     public static void main(String[] args) {
-        new SistemaJuego();
+        //new SistemaJuego();
+        BattleOfMidway game = new BattleOfMidway();
+        Thread t = new Thread(() -> game.run(1.0 / 60.0));
+        t.start();
     }
 }

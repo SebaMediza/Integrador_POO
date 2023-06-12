@@ -13,17 +13,30 @@ import java.util.Objects;
 import static java.lang.System.*;
 
 class Avion_p38 extends ObjetoGrafico implements Movible {
-    final double NAVE_DESPLAZAMIENTO=150.0;
+    final double NAVE_DESPLAZAMIENTO=350.0;
     BufferedImage imagen = null;
     private final Point2D.Double posicion = new Point2D.Double();
     private final ArmaGenerica gun = new ArmaGenerica();
     private int enegia = 100;
     private long time, lastTime;
 
+
+    int xMin = 0;
+    int yMin = 27;
+    int xMax = 495;
+    int yMax = 695;
+
+    private boolean inclinadoIzquierda = false;
+    private boolean inclinadoDerecha = false;
+    BufferedImage imagenincliizqui;
+    BufferedImage imageninclidere;
+
     public Avion_p38(String file) {
         super(file);
         try {
             this.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(file))));
+            imagenincliizqui = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/inclinacionIzquierda.png")));
+            imageninclidere = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/inclinacionDerecha.png")));
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -49,29 +62,51 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
         return posicion.getY();
     }
     public void draw(Graphics2D g) {
-        g.drawImage(imagen, (int) posicion.getX(), (int) posicion.getY(), null);
+        if(inclinadoIzquierda){
+            g.drawImage(imagenincliizqui, (int) posicion.getX(), (int) posicion.getY(), null);
+        } else if(inclinadoDerecha){
+            g.drawImage(imageninclidere, (int) posicion.getX(), (int) posicion.getY(), null);
+        } else {
+            g.drawImage(imagen, (int) posicion.getX(), (int) posicion.getY(), null);
+        }
     }
 
     @Override
     public void mover(double delta, Keyboard keyboard) {
         // Procesar teclas de direccion
         if (keyboard.isKeyPressed(KeyEvent.VK_UP)){
-            this.setY(this.getY() - NAVE_DESPLAZAMIENTO * delta);
             //shipY -= NAVE_DESPLAZAMIENTO * delta;
+            int nuevaY = (int) (this.getY() - NAVE_DESPLAZAMIENTO * delta);
+            if(nuevaY >= yMin){
+                this.setY(nuevaY);
+            }    
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_DOWN)){
             //shipY += NAVE_DESPLAZAMIENTO * delta;
-            this.setY(this.getY() + NAVE_DESPLAZAMIENTO * delta);
+            int nuevaY = (int) (this.getY() + NAVE_DESPLAZAMIENTO * delta);
+            if (nuevaY <= yMax){
+                this.setY(nuevaY);
+            }
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_LEFT)){
             ///shipX -= NAVE_DESPLAZAMIENTO * delta;
-            this.setX(this.getX() - NAVE_DESPLAZAMIENTO * delta);
-        }
-        if (keyboard.isKeyPressed(KeyEvent.VK_RIGHT)){
+            int nuevaX = (int) (this.getX() - NAVE_DESPLAZAMIENTO * delta);
+            if (nuevaX >= xMin){
+                this.setX(nuevaX);
+                inclinadoIzquierda = true;
+                inclinadoDerecha = false;
+            }
+        }else if (keyboard.isKeyPressed(KeyEvent.VK_RIGHT)){
             //shipX += NAVE_DESPLAZAMIENTO * delta;
-            this.setX(this.getX() + NAVE_DESPLAZAMIENTO * delta);
-//            out.println(this.getX());
-//            out.println(this.getY());
+            int nuevaX = (int) (this.getX() + NAVE_DESPLAZAMIENTO * delta);
+            if (nuevaX <= xMax){
+                this.setX(nuevaX);
+                inclinadoIzquierda = false;
+                inclinadoDerecha = true;
+            }
+        }else{
+            inclinadoIzquierda = false;
+            inclinadoDerecha = false;
         }
         time += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
