@@ -7,6 +7,7 @@ import javax.imageio.*; //imagenes
 import java.util.*;
 
 public class BattleOfMidway extends JGame {
+    private static final double VELOCIDAD_IMAGEN = 61, velocidadNuber = 200;;
     public static ArrayList<Municion> municionAmigaArrayList = new ArrayList<>();
     public static ArrayList<Municion> municionEnemigaArrayList = new ArrayList<>();
     public static ArrayList<AvionEnemigo> avionEnemigoArrayList = new ArrayList<>();
@@ -25,13 +26,13 @@ public class BattleOfMidway extends JGame {
     }
 
     public static int finalScore = 0;
-    BufferedImage img_fondo = null;
-    private  int offSetY;
+    BufferedImage img_fondo, imagenNubes;
+    private  int offSetY, posicionNubesY;
     BufferedImage kabom = null;
     Avion_p38 avionP38;
 
     public BattleOfMidway() {
-        super("Battle Of Midway", 550, 1300);
+        super("Battle Of Midway", 945, Toolkit.getDefaultToolkit().getScreenSize().height - 37);
         System.out.println(appProperties.stringPropertyNames());
     }
 
@@ -50,6 +51,12 @@ public class BattleOfMidway extends JGame {
     public void gameUpdate(double delta) {
         Keyboard keyboard = this.getKeyboard();
         avionP38.mover(delta, keyboard);
+        //MOVIMIENTO DEL FONDO
+        offSetY -= VELOCIDAD_IMAGEN * delta;
+        if(offSetY < -img_fondo.getHeight()){
+            offSetY = 0;
+        }
+        posicionNubesY -= velocidadNuber * delta;
         //MOVIMIENTO DE LAS BALAS
         for (Municion bala : municionAmigaArrayList){
             bala.setPosition(bala.getX(),bala.getY() - 5);
@@ -86,7 +93,8 @@ public class BattleOfMidway extends JGame {
     }
 
     public void gameDraw(Graphics2D g) {
-        g.drawImage(img_fondo, 0, 0,null);// imagen de fondo
+        g.drawImage(img_fondo, 0, -offSetY,null);// imagen de fondo
+        g.drawImage(imagenNubes, 0, -posicionNubesY, null);// imagen nubes
         avionP38.draw(g);
         for (Municion bala : municionAmigaArrayList){
             bala.draw(g);
