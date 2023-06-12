@@ -13,7 +13,7 @@ import java.util.Objects;
 import static java.lang.System.*;
 
 class Avion_p38 extends ObjetoGrafico implements Movible {
-    final double NAVE_DESPLAZAMIENTO=350.0;
+    final double NAVE_DESPLAZAMIENTO=450.0;
     BufferedImage imagen = null;
     private final Point2D.Double posicion = new Point2D.Double();
     private final ArmaGenerica gun = new ArmaGenerica();
@@ -23,8 +23,8 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
 
     int xMin = 0;
     int yMin = 27;
-    int xMax = 495;
-    int yMax = 695;
+    int xMax = 895;
+    int yMax = Toolkit.getDefaultToolkit().getScreenSize().height - 76;
 
     private boolean inclinadoIzquierda = false;
     private boolean inclinadoDerecha = false;
