@@ -7,7 +7,7 @@ import javax.imageio.*; //imagenes
 import java.util.*;
 
 public class BattleOfMidway extends JGame {
-    private static final double VELOCIDAD_IMAGEN = 61, velocidadNuber = 200;;
+    private static final double VELOCIDAD_IMAGEN = 61, velocidadNuber = 200, velocidadBarco = 59;
     public static ArrayList<Municion> municionAmigaArrayList = new ArrayList<>();
     public static ArrayList<Municion> municionEnemigaArrayList = new ArrayList<>();
     public static ArrayList<AvionEnemigo> avionEnemigoArrayList = new ArrayList<>();
@@ -26,8 +26,8 @@ public class BattleOfMidway extends JGame {
     }
 
     public static int finalScore = 0;
-    BufferedImage img_fondo, imagenNubes;
-    private  int offSetY, posicionNubesY;
+    BufferedImage img_fondo, imagenNubes, barquitos;
+    private  int offSetY, posicionNubesY, posicionBarcosY;
     BufferedImage kabom = null;
     Avion_p38 avionP38;
 
@@ -40,12 +40,15 @@ public class BattleOfMidway extends JGame {
         try {
             avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
             img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo3.png")));
-            //imagenNubes = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/Enemigo.png")));
+            imagenNubes = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/nubes2.png")));
+            barquitos = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/barcos.png")));
             kabom = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/explocion.gif")));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
         offSetY = img_fondo.getHeight() - getHeight();
+        posicionBarcosY = img_fondo.getHeight() * 2 - getHeight();
+        posicionNubesY = img_fondo.getHeight() * 2;
     }
 
     public void gameUpdate(double delta) {
@@ -53,13 +56,20 @@ public class BattleOfMidway extends JGame {
         avionP38.mover(delta, keyboard);
         //MOVIMIENTO DEL FONDO
         offSetY -= VELOCIDAD_IMAGEN * delta;
-        if(offSetY < -img_fondo.getHeight()){
-            offSetY = 0;
+        if(offSetY < 0){
+            offSetY = img_fondo.getHeight() - getHeight();
+        }
+        posicionBarcosY -= velocidadBarco * delta;
+        if(posicionBarcosY < 0){
+            posicionBarcosY = img_fondo.getHeight() * 2 - getHeight();
         }
         posicionNubesY -= velocidadNuber * delta;
+        if(posicionNubesY < 0){
+            posicionNubesY = img_fondo.getHeight() * 2;
+        }
         //MOVIMIENTO DE LAS BALAS
         for (Municion bala : municionAmigaArrayList){
-            bala.setPosition(bala.getX(),bala.getY() - 5);
+            bala.setPosition(bala.getX(),bala.getY() - 25);
         }
         //COLICION DE MUNICION AMIGA CON AVION ENEMIGO
         ArrayList<Municion> toDeleteMunicionAmiga= new ArrayList<>();
@@ -94,6 +104,7 @@ public class BattleOfMidway extends JGame {
 
     public void gameDraw(Graphics2D g) {
         g.drawImage(img_fondo, 0, -offSetY,null);// imagen de fondo
+        //g.drawImage(barquitos, 0, -posicionBarcosY, null);
         g.drawImage(imagenNubes, 0, -posicionNubesY, null);// imagen nubes
         avionP38.draw(g);
         for (Municion bala : municionAmigaArrayList){

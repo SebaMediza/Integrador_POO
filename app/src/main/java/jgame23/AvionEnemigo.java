@@ -13,6 +13,7 @@ public class AvionEnemigo extends Enemigo{
     private boolean movingRight;
 
     public AvionEnemigo(String filename){
+        
         try {
             this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filename)));
         }catch (IOException e) {
