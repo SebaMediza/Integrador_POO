@@ -110,7 +110,7 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
         }
         time += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
-        if (keyboard.isKeyPressed(KeyEvent.VK_Z) && time > 300){
+        if (keyboard.isKeyPressed(KeyEvent.VK_Z) && time > 200){
             gun.disparar(this);
             time = 0;
 
