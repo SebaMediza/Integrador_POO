@@ -127,7 +127,6 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
             }
         }
     }
-
     public void hit(){
         enegia = enegia - 1;
     }

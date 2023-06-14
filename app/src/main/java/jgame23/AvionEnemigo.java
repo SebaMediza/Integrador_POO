@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class AvionEnemigo extends Enemigo{
     private long time, lastTime;
-
     private boolean movingRight;
 
     public AvionEnemigo(String filename){
@@ -18,7 +17,6 @@ public class AvionEnemigo extends Enemigo{
         time = 0;
         lastTime = System.currentTimeMillis();
     }
-
     @Override
     public void disparar() {
         time += System.currentTimeMillis() - lastTime;
@@ -28,18 +26,12 @@ public class AvionEnemigo extends Enemigo{
             time = 0;
         }
     }
-
     public void disparaMisil(){
         super.dispararMisil();
     }
-
     @Override
     public void mover(double delta, Keyboard keyboard) {}
-
-    public void moverAutomatico(){
-
-    }
-
+    public void moverAutomatico(){}
     @Override
     public double getCoordenadas() {
         return 0;

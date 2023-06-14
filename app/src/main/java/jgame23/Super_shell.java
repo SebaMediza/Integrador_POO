@@ -4,7 +4,8 @@ import com.entropyinteractive.Keyboard;
 
 import java.awt.*;
 
-public class Super_shell extends Power_up {
+public class Super_shell extends Power_up{
+    Thread thread;
     public Super_shell(String filename) {
         super(filename);
     }
@@ -14,7 +15,7 @@ public class Super_shell extends Power_up {
 
     @Override
     protected void activar(Avion_p38 avionP38) {
-        Avion_p38.enegia = avionP38.getEnegia();
+
     }
 
     @Override
@@ -26,4 +27,5 @@ public class Super_shell extends Power_up {
     public double getCoordenadas() {
         return 0;
     }
+
 }
