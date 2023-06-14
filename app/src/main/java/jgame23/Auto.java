@@ -18,8 +18,8 @@ public class Auto extends Power_up{
         return 0;
     }
 
-    @Override
+//    @Override
     protected void activar(Avion_p38 avionP38) {
-        super.activar(avionP38);
+
     }
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
 public abstract class ObjetoGrafico extends Rectangle implements Movible{
     protected BufferedImage image;
     protected Point2D.Double position = new Point2D.Double();
-    protected double ANIMATION_COUNTER=0;
+//    protected double ANIMATION_COUNTER=0;
 
     public ObjetoGrafico(String filename){
         try{

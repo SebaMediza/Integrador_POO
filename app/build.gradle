@@ -27,7 +27,7 @@ java {
     withJavadocJar()
 }
 dependencies {
-		// Use JUnit test framework.
+    // Use JUnit test framework.
 		testImplementation 'junit:junit:4.13.2'
 	
     //compile files('lib/bucleJuego.jar')

@@ -13,13 +13,7 @@ public class AvionEnemigo extends Enemigo{
     private boolean movingRight;
 
     public AvionEnemigo(String filename){
-        
-        try {
-            this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filename)));
-        }catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        super(filename);
         this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 100);
         time = 0;
         lastTime = System.currentTimeMillis();

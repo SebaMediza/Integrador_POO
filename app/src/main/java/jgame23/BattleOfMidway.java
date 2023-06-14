@@ -12,6 +12,7 @@ public class BattleOfMidway extends JGame {
     public static ArrayList<Municion> municionEnemigaArrayList = new ArrayList<>();
     public static ArrayList<AvionEnemigo> avionEnemigoArrayList = new ArrayList<>();
     public static ArrayList<Misil> misilArrayList = new ArrayList<>();
+    public static ArrayList<Power_up> powerUpArrayList = new ArrayList<>();
     public static void addMunicionAmigaArrayList(Municion municion){
         municionAmigaArrayList.add(municion);
     }
@@ -24,12 +25,16 @@ public class BattleOfMidway extends JGame {
     public static void addMisilArrayList(Misil misil){
         misilArrayList.add(misil);
     }
-
+    public static void addPowerUpArrayList(Power_up powerUp){
+        powerUpArrayList.add(powerUp);
+    }
+    //Ranking ranking = new Ranking();
     public static int finalScore = 0;
     BufferedImage img_fondo, imagenNubes, barquitos;
     private  int offSetY, posicionNubesY, posicionBarcosY;
     BufferedImage kabom = null;
     Avion_p38 avionP38;
+    Akato akato;
 
     public BattleOfMidway() {
         super("Battle Of Midway", 945, Toolkit.getDefaultToolkit().getScreenSize().height - 37);
@@ -38,6 +43,7 @@ public class BattleOfMidway extends JGame {
 
     public void gameStartup() {
         try {
+            avionP38 = new Avion_p38("imagenes/avionp38.png");
             avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
             img_fondo = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/fondo3.png")));
             imagenNubes = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/nubes2.png")));
@@ -49,6 +55,11 @@ public class BattleOfMidway extends JGame {
         offSetY = img_fondo.getHeight() - getHeight();
         posicionBarcosY = img_fondo.getHeight() * 2 - getHeight();
         posicionNubesY = img_fondo.getHeight() * 2;
+        akato = new Akato("imagenes/avionAkato.png");
+//        Pow pow = new Pow("imagenes/Pow.png");
+//        Super_shell superShell = new Super_shell("imagenes/SuperShell.png");
+//        addPowerUpArrayList(superShell);
+//        addAvionEnemigoArrayList(new AvionEnemigo("imagenes/avionEnemigo.png"));
     }
 
     public void gameUpdate(double delta) {
@@ -100,6 +111,16 @@ public class BattleOfMidway extends JGame {
             avionEnemigo.disparar();
 //            avionEnemigo.dispararMisil();
         }
+        ArrayList<Power_up> toDeletePowerUp = new ArrayList<>();
+        for (Power_up powerUp : powerUpArrayList){
+            if (DetectorColiciones.detectarColicionesPowerUp(avionP38, powerUp)){
+                powerUp.activar(avionP38);
+                toDeletePowerUp.add(powerUp);
+            }
+        }
+        for (Power_up powerUp :toDeletePowerUp){
+            powerUpArrayList.remove(powerUp);
+        }
     }
 
     public void gameDraw(Graphics2D g) {
@@ -116,12 +137,17 @@ public class BattleOfMidway extends JGame {
         for (Municion balaEnemiga : municionEnemigaArrayList){
             balaEnemiga.draw(g);
         }
+        for (Power_up powerUp : powerUpArrayList){
+            powerUp.draw(g);
+        }
         g.setColor(Color.black);
         g.drawString(String.valueOf(avionP38.getEnegia()), 480, 50);
         g.drawString(String.valueOf(finalScore),5,50);
         g.setColor(Color.white);
         g.drawString(String.valueOf(avionP38.getEnegia()),482,52);
         g.drawString(String.valueOf(finalScore),7,52);
+
+        akato.draw(g);
     }
     public void gameShutdown() {
         Log.info(getClass().getSimpleName(), "Shutting down game");

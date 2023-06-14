@@ -2,27 +2,27 @@ package jgame23;
 
 public class Jugador {
 
-    private String nombre;
-    private int puntuacion;
+    public static String nombre;
+    public static int puntuacion;
 
-    public Jugador(String nombre){
-        this.nombre=nombre;
-        this.puntuacion=0;
+    public Jugador(String nombreParametro, int puntuacionParametro){
+        nombre = nombreParametro;
+        puntuacion = puntuacionParametro;
     }
 
-    public String getNombre() {
+    public static String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(String nombreParametro) {
+        nombre = nombreParametro;
     }
 
-    public int getPuntuacion() {
+    public static int getPuntuacion() {
         return puntuacion;
     }
 
-    public void setPuntuacion(int puntuacion) {
-        this.puntuacion = puntuacion;
+    public void setPuntuacion(int puntuacionParametro) {
+        puntuacion = puntuacionParametro;
     }
 }

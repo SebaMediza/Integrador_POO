@@ -18,23 +18,4 @@ public abstract class Power_up extends Bonus {
         super.draw(g);
     }
 
-    public void desactivar(){
-        activo = false;
-    }
-
-    public int getDuracion(){
-        return duracion;
-    }
-
-    public void setDuracion(int duracion){
-        this.duracion = duracion;
-    }
-
-    public boolean isActivo(){
-        return activo;
-    }
-
-    public void setActivo(boolean activo){
-        this.activo = activo;
-    }
 }

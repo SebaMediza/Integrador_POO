@@ -15,7 +15,7 @@ public class Pow extends Power_up{
         super(filename);
     }
 
-    @Override
+//    @Override
     protected void activar(Avion_p38 avionP38) {
         avionP38.setEnegia(25);
     }

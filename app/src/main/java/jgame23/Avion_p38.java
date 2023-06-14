@@ -17,7 +17,7 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
     BufferedImage imagen = null;
     private final Point2D.Double posicion = new Point2D.Double();
     private final ArmaGenerica gun = new ArmaGenerica();
-    private int enegia = 100;
+    public static int enegia = 100;
     private long time, lastTime;
 
 
@@ -129,22 +129,22 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
     }
 
     public void hit(){
-        this.enegia = this.enegia - 1;
+        enegia = enegia - 1;
     }
     public void superHit(){
-        this.enegia = this.enegia - 5;
+        enegia = enegia - 5;
     }
     public void crash(){
-        this.enegia = this.enegia - 10;
+        enegia = enegia - 10;
     }
     public int getEnegia(){
         return Math.max(enegia, 0);
     }
     public void setEnegia(int enegia){
-        if (this.enegia + enegia > 100){
-            this.enegia = 100;
+        if (Avion_p38.enegia + enegia > 100){
+            Avion_p38.enegia = 100;
         }else {
-            this.enegia += enegia;
+            Avion_p38.enegia += enegia;
         }
     }
 
