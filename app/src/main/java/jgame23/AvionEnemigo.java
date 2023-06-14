@@ -12,6 +12,7 @@ public class AvionEnemigo extends Enemigo{
 
     private boolean movingRight;
 
+
     public AvionEnemigo(String filename){
         
         try {
@@ -20,7 +21,7 @@ public class AvionEnemigo extends Enemigo{
             throw new RuntimeException(e);
         }
 
-        //this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 100);
+        this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 50);
         time = 0;
         lastTime = System.currentTimeMillis();
     }
