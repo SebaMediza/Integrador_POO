@@ -9,13 +9,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Pow extends Power_up{
-
-    BufferedImage pow = null;
     public Pow(String filename) {
         super(filename);
     }
 
-    @Override
+//    @Override
     protected void activar(Avion_p38 avionP38) {
         avionP38.setEnegia(25);
     }

@@ -50,19 +50,13 @@ public abstract class DetectorColiciones extends Rectangle {
         }
         return colicion;
     }
-    /*
-    public static void detectarColicionesBala(Avion_p38 avionP38){
-        int index = -1;
+
+    public static boolean detectarColicionesPowerUp(Avion_p38 avionP38, Power_up powerUp){
         Rectangle objeto1 = new Rectangle((int) avionP38.getX(), (int) avionP38.getY(), (int) avionP38.getHeigth(), (int) avionP38.getWidth());
-        for (Municion municion : BattleOfMidway.municionAmigaArrayList) {
-            Rectangle objeto2 = new Rectangle((int) municion.getX(), (int) municion.getY(), (int) municion.getHeigth(), (int) municion.getWidth());
-            if (objeto2.intersects(objeto1)) {
-                avionP38.hit();
-                index = BattleOfMidway.municionAmigaArrayList.indexOf(municion);
-            }
-            BattleOfMidway.municionEnemigaArrayList.remove(index);
-        }
+        Rectangle objeto2 = new Rectangle((int) powerUp.getX(), (int) powerUp.getY(), (int) powerUp.getHeigth(), (int) powerUp.getWidth());
+        return objeto1.intersects(objeto2);
     }
+    /*
     public static void detectarColiciones(Avion_p38 avionP38){
         int index = -1;
         Rectangle objeto1 = new Rectangle((int) avionP38.getX(), (int) avionP38.getY(), (int) avionP38.getHeigth(), (int) avionP38.getWidth());

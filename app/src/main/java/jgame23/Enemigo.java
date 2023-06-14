@@ -4,6 +4,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Enemigo extends ObjetoGrafico{
+
+    public Enemigo(String filename) {
+        super(filename);
+    }
+
     private ArmaGenerica gun = new ArmaGenerica();
     protected int cantEnergia;
     protected Color colorEnemigo;

@@ -1,16 +1,10 @@
 package jgame23;
 
-import java.util.Vector;
+import java.io.File;
+import java.util.Calendar;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class Ranking {
-
-    private Vector<Jugador> jg;
-
-    public Ranking(){
-        jg=new Vector<Jugador>();
-    }
-
-    public Vector<Jugador> getJg() {
-        return this.jg;
-    }
 }

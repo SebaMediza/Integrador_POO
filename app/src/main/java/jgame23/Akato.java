@@ -2,10 +2,17 @@ package jgame23;
 
 import com.entropyinteractive.Keyboard;
 
-public class Auto extends Power_up{
+import java.awt.*;
 
-    public Auto(String filename) {
-        super(filename);
+public class Akato extends Enemigo{
+
+    public Akato(String file) {
+        super(file);
+    }
+
+    @Override
+    public void draw(Graphics2D g) {
+        super.draw(g);
     }
 
     @Override
@@ -14,10 +21,5 @@ public class Auto extends Power_up{
     @Override
     public double getCoordenadas() {
         return 0;
-    }
-
-    @Override
-    protected void activar(Avion_p38 avionP38) {
-
     }
 }

@@ -10,7 +10,7 @@ public abstract class Arma {
     }
 
     public void disparar(Enemigo plane){
-        Municion bala = new Municion("imagenes/municion4.png");
+        Municion bala = new Municion("imagenes/tiroEnemigo.png");
         BattleOfMidway.addMunicionEnemigaArrayList(bala);
         bala.setPosition(plane.getX(), plane.getY());
     }
