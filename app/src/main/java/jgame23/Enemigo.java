@@ -1,6 +1,7 @@
 package jgame23;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public abstract class Enemigo extends ObjetoGrafico{
     private ArmaGenerica gun = new ArmaGenerica();
@@ -8,17 +9,27 @@ public abstract class Enemigo extends ObjetoGrafico{
     protected Color colorEnemigo;
     protected double x;
     protected double y;
-    protected double speed;
+    protected static double speed;
     protected boolean movingDown;
     protected int maxY;
     protected int minY;
+    private BufferedImage imagen;
 
-    // public Enemigo(double x, double y, double speed) {
-    //     this.x = x;
-    //     this.y = y;
-    //     this.speed = speed;
-    //     this.movingDown = true;
-    // }
+    public void update(double delta){
+        if(movingDown){
+            y += speed * delta;
+            if(y >= (getHeight() - imagen.getHeight())){
+                y = getHeight() - imagen.getHeight();
+                movingDown = false;
+            }
+        } else {
+            y -= speed * delta;
+            if(y <= 0){
+                y = 0;
+                movingDown = true;
+            }
+        }
+    }
 
     // public void mover(double delta){
     //     if(movingDown){
