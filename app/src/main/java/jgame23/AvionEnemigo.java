@@ -9,8 +9,6 @@ import java.util.Objects;
 
 public class AvionEnemigo extends Enemigo{
     private long time, lastTime;
-    private boolean movingRight;
-
     public AvionEnemigo(String filename){
         super(filename);
         this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 100);
@@ -31,7 +29,6 @@ public class AvionEnemigo extends Enemigo{
     }
     @Override
     public void mover(double delta, Keyboard keyboard) {}
-    public void moverAutomatico(){}
     @Override
     public double getCoordenadas() {
         return 0;

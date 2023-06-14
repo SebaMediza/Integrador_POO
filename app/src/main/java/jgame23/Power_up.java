@@ -4,8 +4,6 @@ import java.awt.*;
 
 public abstract class Power_up extends Bonus {
     protected int duracion = 20;
-    protected boolean activo;
-    protected int salud;
 
     public Power_up(String filename){
         super(filename);

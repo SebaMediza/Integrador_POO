@@ -2,8 +2,8 @@ package jgame23;
 
 import com.entropyinteractive.Keyboard;
 
-public class BarcoEnemigo extends Enemigo{
-    public BarcoEnemigo(String filename) {
+public class Yamato extends Enemigo{
+    public Yamato(String filename) {
         super(filename);
     }
 

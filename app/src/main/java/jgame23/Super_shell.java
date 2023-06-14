@@ -5,7 +5,6 @@ import com.entropyinteractive.Keyboard;
 import java.awt.*;
 
 public class Super_shell extends Power_up{
-    Thread thread;
     public Super_shell(String filename) {
         super(filename);
     }

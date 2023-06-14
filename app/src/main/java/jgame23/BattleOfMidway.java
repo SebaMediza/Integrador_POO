@@ -147,7 +147,7 @@ public class BattleOfMidway extends JGame {
         g.drawString(String.valueOf(avionP38.getEnegia()),482,52);
         g.drawString(String.valueOf(finalScore),7,52);
 
-        akato.draw(g);
+//        akato.draw(g);
     }
     public void gameShutdown() {
         Log.info(getClass().getSimpleName(), "Shutting down game");
