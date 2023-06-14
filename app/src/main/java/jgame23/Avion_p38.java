@@ -13,21 +13,35 @@ import java.util.Objects;
 import static java.lang.System.*;
 
 class Avion_p38 extends ObjetoGrafico implements Movible {
-    final double NAVE_DESPLAZAMIENTO=150.0;
+    final double NAVE_DESPLAZAMIENTO=450.0;
     BufferedImage imagen = null;
     private final Point2D.Double posicion = new Point2D.Double();
     private final ArmaGenerica gun = new ArmaGenerica();
+    private int enegia = 100;
+    private long time, lastTime;
+
+
+    int xMin = 0;
+    int yMin = 27;
+    int xMax = 895;
+    int yMax = Toolkit.getDefaultToolkit().getScreenSize().height - 76;
+
+    private boolean inclinadoIzquierda = false;
+    private boolean inclinadoDerecha = false;
+    BufferedImage imagenincliizqui;
+    BufferedImage imageninclidere;
 
     public Avion_p38(String file) {
         super(file);
         try {
-//            avionP38.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/avionp38.png"))));
-//            avionP38.setPosicion((double) getWidth() / 2, (double) getHeight() / 2);
             this.setImagen(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(file))));
-//            this.setPosicion(getWidth() / 2, getHeight() / 2);
+            imagenincliizqui = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/inclinacionIzquierda.png")));
+            imageninclidere = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("imagenes/inclinacionDerecha.png")));
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+        time = 0;
+        lastTime = System.currentTimeMillis();
     }
     public void setImagen(BufferedImage img) {
         this.imagen = img;
@@ -47,38 +61,62 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
     public double getY() {
         return posicion.getY();
     }
-    public void update(double delta) {}
     public void draw(Graphics2D g) {
-        g.drawImage(imagen, (int) posicion.getX(), (int) posicion.getY(), null);
+        if(inclinadoIzquierda){
+            g.drawImage(imagenincliizqui, (int) posicion.getX(), (int) posicion.getY(), null);
+        } else if(inclinadoDerecha){
+            g.drawImage(imageninclidere, (int) posicion.getX(), (int) posicion.getY(), null);
+        } else {
+            g.drawImage(imagen, (int) posicion.getX(), (int) posicion.getY(), null);
+        }
     }
 
     @Override
     public void mover(double delta, Keyboard keyboard) {
         // Procesar teclas de direccion
         if (keyboard.isKeyPressed(KeyEvent.VK_UP)){
-            this.setY(this.getY() - NAVE_DESPLAZAMIENTO * delta);
             //shipY -= NAVE_DESPLAZAMIENTO * delta;
+            int nuevaY = (int) (this.getY() - NAVE_DESPLAZAMIENTO * delta);
+            if(nuevaY >= yMin){
+                this.setY(nuevaY);
+            }    
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_DOWN)){
             //shipY += NAVE_DESPLAZAMIENTO * delta;
-            this.setY(this.getY() + NAVE_DESPLAZAMIENTO * delta);
+            int nuevaY = (int) (this.getY() + NAVE_DESPLAZAMIENTO * delta);
+            if (nuevaY <= yMax){
+                this.setY(nuevaY);
+            }
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_LEFT)){
             ///shipX -= NAVE_DESPLAZAMIENTO * delta;
-            this.setX(this.getX() - NAVE_DESPLAZAMIENTO * delta);
-        }
-        if (keyboard.isKeyPressed(KeyEvent.VK_RIGHT)){
+            int nuevaX = (int) (this.getX() - NAVE_DESPLAZAMIENTO * delta);
+            if (nuevaX >= xMin){
+                this.setX(nuevaX);
+                inclinadoIzquierda = true;
+                inclinadoDerecha = false;
+            }
+        }else if (keyboard.isKeyPressed(KeyEvent.VK_RIGHT)){
             //shipX += NAVE_DESPLAZAMIENTO * delta;
-            this.setX(this.getX() + NAVE_DESPLAZAMIENTO * delta);
+            int nuevaX = (int) (this.getX() + NAVE_DESPLAZAMIENTO * delta);
+            if (nuevaX <= xMax){
+                this.setX(nuevaX);
+                inclinadoIzquierda = false;
+                inclinadoDerecha = true;
+            }
+        }else{
+            inclinadoIzquierda = false;
+            inclinadoDerecha = false;
         }
-        if (keyboard.isKeyPressed(KeyEvent.VK_Z)){
+        time += System.currentTimeMillis() - lastTime;
+        lastTime = System.currentTimeMillis();
+        if (keyboard.isKeyPressed(KeyEvent.VK_Z) && time > 200){
             gun.disparar(this);
+            time = 0;
+
         }
         if (keyboard.isKeyPressed(KeyEvent.VK_H)){
-            for (int i=0;i<10;i++){
-                BattleOfMidway.addAvionEnemigo(new AvionEnemigo("imagenes/avionEnemigo.png"));
-            }
-            out.println(BattleOfMidway.avionEnemigos.size());
+            BattleOfMidway.addAvionEnemigoArrayList(new AvionEnemigo("imagenes/avionEnemigo.png"));
         }
         // Esc fin del juego
         LinkedList< KeyEvent > keyEvents = keyboard.getEvents();
@@ -88,7 +126,26 @@ class Avion_p38 extends ObjetoGrafico implements Movible {
                 exit(0);
             }
         }
-        this.update(delta);
+    }
+
+    public void hit(){
+        this.enegia = this.enegia - 1;
+    }
+    public void superHit(){
+        this.enegia = this.enegia - 5;
+    }
+    public void crash(){
+        this.enegia = this.enegia - 10;
+    }
+    public int getEnegia(){
+        return Math.max(enegia, 0);
+    }
+    public void setEnegia(int enegia){
+        if (this.enegia + enegia > 100){
+            this.enegia = 100;
+        }else {
+            this.enegia += enegia;
+        }
     }
 
     @Override

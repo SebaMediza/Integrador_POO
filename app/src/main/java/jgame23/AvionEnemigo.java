@@ -4,31 +4,47 @@ import com.entropyinteractive.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
 public class AvionEnemigo extends Enemigo{
-    BufferedImage picture;
-    private int max = 1000;
-    private int min = 500;
-    Point2D.Double position = new Point2D.Double();
+    private long time, lastTime;
+
+    private boolean movingRight;
+
+
     public AvionEnemigo(String filename){
+        
         try {
             this.image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(filename)));
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
-        this.setPosition((getHeight() / 2) + 100.0, (getWidth() / 2) + 100.0);
+        this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 100);
+        time = 0;
+        lastTime = System.currentTimeMillis();
     }
+
     @Override
     public void disparar() {
-        super.disparar();
+        time += System.currentTimeMillis() - lastTime;
+        lastTime = System.currentTimeMillis();
+        if(time > 1000) {
+            super.disparar();
+            time = 0;
+        }
+    }
+
+    public void disparaMisil(){
+        super.dispararMisil();
     }
 
     @Override
     public void mover(double delta, Keyboard keyboard) {}
+
+    public void moverAutomatico(){
+
+    }
 
     @Override
     public double getCoordenadas() {
