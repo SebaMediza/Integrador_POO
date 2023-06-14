@@ -20,8 +20,7 @@ public class AvionEnemigo extends Enemigo{
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 50);
+        this.setPosition ((getHeight() / 2) + 100, (getWidth() / 2) + 100);
         time = 0;
         lastTime = System.currentTimeMillis();
     }
